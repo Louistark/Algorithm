@@ -1,0 +1,27 @@
+#include <iostream>
+#include <memory.h>
+using namespace std;
+
+int countPrimes(int n)
+{
+    bool* isPrim = new bool[n];
+    memset (isPrim, true, n);  //将所有数组元素初始化为true
+    for (int i = 2; i * i < n; i++)  //从2开始清理范围内的非素数
+        if (isPrim[i])
+            for (int j = i * i; j < n; j += i)  //isPrime[i]为真则表示i为素数，将范围内i的倍数置为false
+                isPrim[j] = false;
+
+    int count = 0;
+    for (int i = 2; i < n; i++)  //剩余的isPrime[i]为真的数均为素数
+        if (isPrim[i]) count++;
+
+    return count;
+}
+
+int main() {
+    int num;
+    cout<<"请输入一个数：";
+    cin>>num;
+    cout<<"在 2 ~ "<<num<<" 范围内有 "<<countPrimes(num)<<" 个素数。";
+    return 0;
+}
