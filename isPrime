@@ -18,6 +18,8 @@ int countPrimes(int n)
     return count;
 }
 
+
+
 int main() {
     int num;
     cout<<"请输入一个数：";
